@@ -1,0 +1,49 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& numbers, int target) {
+        vector<int> A;
+        int size = numbers.size();
+        for(int i=0; i<size-1; i++)
+        {
+            int x = target - numbers[i];
+            //int l,r,mid;
+            //l = i; r = size;
+            //int index = findNumber(numbers, i+1, size-1, x);
+            int st=i+1;
+            int end=size-1;
+            while(st<=end){
+                int mid = (st+end)/2;
+                if(numbers[mid]==x){
+                    A.push_back(i+1);
+                    A.push_back(mid+1);
+                    return A;
+                }
+                else if(numbers[mid]<x)
+                {
+                    st = mid+1;    
+                }
+                else
+                {
+                    end = mid-1;
+                }
+            }       
+        }
+        return A;
+    }
+    
+    int findNumber(vector<int>& numbers, int st, int end, int target){
+        if(st>end){
+            return -1;
+        }    
+        int m = (st+end)/2;
+        if(numbers[m]==target){
+            return m;
+        }
+        else if(numbers[m]<target){
+            return findNumber(numbers, m+1,end, target);
+        }
+        else{
+            return findNumber(numbers, st,m-1, target);
+        }
+    }
+};
