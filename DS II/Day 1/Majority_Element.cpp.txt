@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        int n = nums.size();
+        int j=nums[0];
+        int x=0;
+        for (int i=0; i<n; i++)
+        {
+            if(j==nums[i])
+            {
+                x++;
+                if(x>n/2)
+                {
+                    return j;
+                }
+            }
+            else
+            {
+                j = nums[i];
+                x=1;
+            }
+        }
+        return j;
+    }
+};
